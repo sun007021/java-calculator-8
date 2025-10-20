@@ -17,7 +17,7 @@ public class Delimiter {
         }
     }
 
-    public String getValue() {
+    String getValue() {
         return value;
     }
 }

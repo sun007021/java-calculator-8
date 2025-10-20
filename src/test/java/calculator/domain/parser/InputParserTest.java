@@ -1,6 +1,5 @@
 package calculator.domain.parser;
 
-import calculator.domain.delimiter.Delimiters;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
