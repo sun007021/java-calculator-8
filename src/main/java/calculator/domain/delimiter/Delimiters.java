@@ -26,17 +26,26 @@ public class Delimiters {
             return new String[0];
         }
 
-        String regex = toRegex();
-        String[] tokens = text.split(regex);
-
-        // 빈 토큰 검증 (연속 구분자)
-        for (String token : tokens) {
-            if (token.trim().isEmpty()) {
-                throw new IllegalArgumentException("구분자가 연속으로 사용되었거나 숫자가 누락되었습니다.");
-            }
-        }
-
+        String[] tokens = splitByDelimiters(text);
+        validateTokens(tokens);
         return tokens;
+    }
+
+    private String[] splitByDelimiters(String text) {
+        String regex = toRegex();
+        return text.split(regex);
+    }
+
+    private void validateTokens(String[] tokens) {
+        for (String token : tokens) {
+            validateToken(token);
+        }
+    }
+
+    private void validateToken(String token) {
+        if (token.trim().isEmpty()) {
+            throw new IllegalArgumentException("구분자가 연속으로 사용되었거나 숫자가 누락되었습니다.");
+        }
     }
 
     private String toRegex() {
