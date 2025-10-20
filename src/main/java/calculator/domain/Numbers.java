@@ -25,6 +25,12 @@ public class Numbers {
         return new Numbers(numbers);
     }
 
+    public int sum() {
+        return values.stream()
+                .mapToInt(PositiveInteger::getValue)
+                .sum();
+    }
+
     public static Numbers empty() {
         return new Numbers(new ArrayList<>());
     }

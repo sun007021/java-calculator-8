@@ -23,4 +23,7 @@ public class PositiveInteger {
         }
     }
 
+    public int getValue() {
+        return value;
+    }
 }

@@ -1,21 +1,21 @@
 package calculator;
 
-import calculator.domain.parser.InputParser;
+import calculator.domain.Calculator;
 
 public class CalculatorController {
     private final InputView inputView;
     private final OutputView outputView;
-    private final InputParser inputParser;
+    private final Calculator calculator;
 
-    public CalculatorController(InputView inputView, OutputView outputView, InputParser inputParser) {
+    public CalculatorController(InputView inputView, OutputView outputView, Calculator calculator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.inputParser = inputParser;
+        this.calculator = calculator;
     }
 
     public void run() {
         String input = inputView.readCalculationInput();
-        inputParser.parse(input);
-        outputView.printCalculationOutput(0);
+        int result = calculator.calculate(input);
+        outputView.printCalculationOutput(result);
     }
 }
