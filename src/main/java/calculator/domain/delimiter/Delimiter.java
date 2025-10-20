@@ -1,11 +1,11 @@
 package calculator.domain.delimiter;
 
 public class Delimiter {
-    private final String value;
+    private final char value;
 
     public Delimiter(String value) {
         validate(value);
-        this.value = value;
+        this.value = value.charAt(0);
     }
 
     private void validate(String value) {
@@ -18,6 +18,6 @@ public class Delimiter {
     }
 
     String getValue() {
-        return value;
+        return String.valueOf(value);
     }
 }
