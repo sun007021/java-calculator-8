@@ -45,7 +45,7 @@ public class InputParser {
         int delimiterEnd = input.indexOf(CUSTOM_DELIMITER_SUFFIX);
 
         if (delimiterEnd <= delimiterStart) {
-            throw new IllegalArgumentException("커스텀 구분자 형식이 올바르지 않았습니다.");
+            throw new IllegalArgumentException("커스텀 구분자 형식이 올바르지 않습니다.");
         }
 
         return input.substring(delimiterStart, delimiterEnd);
