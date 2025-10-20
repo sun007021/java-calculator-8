@@ -32,3 +32,80 @@
 ### 출력
 
 -[x] "결과 : {숫자}" 형태로 출력
+
+---
+
+## 프로그램 실행 흐름
+
+### 전체 아키텍처
+
+```
+Application (진입점)
+    ↓
+CalculatorController (MVC - Controller)
+    ├─ InputView (사용자 입력)
+    ├─ Calculator (도메인 로직)
+    └─ OutputView (결과 출력)
+```
+
+### 실행 단계
+
+#### 1. 입력 (InputView)
+
+- 콘솔에서 문자열 입력 받기
+- 빈 입력 시 빈 문자열("") 반환
+
+#### 2. 파싱 (InputParser)
+
+- 커스텀 구분자 감지: "//"로 시작하는지 확인
+- 커스텀 구분자 추출: "//"와 "\n" 사이의 문자
+- 커스텀 구분자 검증: 1개의 문자인지 확인 (Delimiter)
+- 본문 추출: "\n" 이후의 숫자 문자열
+
+#### 3. 구분자 구성 (Delimiters)
+
+- 기본 구분자: 쉼표(,), 콜론(:)
+- 커스텀 구분자 추가 (있는 경우)
+- 정규식 생성: 모든 구분자를 "|"로 연결
+
+#### 4. 문자열 분리 (Delimiters.split)
+
+- 정규식을 이용한 문자열 분리
+- 빈 토큰 검증: 연속 구분자 예외 처리
+
+#### 5. 숫자 변환 (Numbers.from)
+
+- 각 토큰을 trim 후 PositiveInteger로 변환
+- PositiveInteger 검증: 양의 정수(≥ 1)인지 확인
+- 숫자가 아니거나 0 이하면 IllegalArgumentException 발생
+
+#### 6. 계산 (Numbers.sum)
+
+- List<PositiveInteger>의 합계 계산
+- 빈 리스트인 경우 0 반환
+
+#### 7. 출력 (OutputView)
+
+- "결과 : {숫자}" 형식으로 출력
+
+### 예시 실행
+
+**입력:** `//;\n1;2,3:4`
+
+```
+InputParser.parse("//;\n1;2,3:4")
+  → ParseResult { delimiters: [",", ":", ";"], numberText: "1;2,3:4" }
+
+Delimiters.split("1;2,3:4")
+  → ["1", "2", "3", "4"]
+
+Numbers.from(["1", "2", "3", "4"])
+  → Numbers([PositiveInteger(1), PositiveInteger(2), PositiveInteger(3), PositiveInteger(4)])
+
+Numbers.sum()
+  → 10
+```
+
+**출력:** `결과 : 10`
+
+---
