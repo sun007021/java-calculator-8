@@ -22,7 +22,7 @@ class InputParserTest {
 
         // then
         assertThat(result.getNumberText()).isEqualTo("1,2,3");
-        String[] tokens = result.getDelimiters().split(result.getNumberText());
+        String[] tokens = result.splitNumbers();
         assertThat(tokens).containsExactly("1", "2", "3");
     }
 
@@ -37,7 +37,7 @@ class InputParserTest {
 
         // then
         assertThat(result.getNumberText()).isEqualTo("1;2;3");
-        String[] tokens = result.getDelimiters().split(result.getNumberText());
+        String[] tokens = result.splitNumbers();
         assertThat(tokens).containsExactly("1", "2", "3");
     }
 
@@ -52,7 +52,7 @@ class InputParserTest {
 
         // then
         assertThat(result.getNumberText()).isEqualTo("1;2,3:4");
-        String[] tokens = result.getDelimiters().split(result.getNumberText());
+        String[] tokens = result.splitNumbers();
         assertThat(tokens).containsExactly("1", "2", "3", "4");
     }
 
@@ -67,7 +67,7 @@ class InputParserTest {
 
         // then
         assertThat(result.getNumberText()).isEmpty();
-        String[] tokens = result.getDelimiters().split(result.getNumberText());
+        String[] tokens = result.splitNumbers();
         assertThat(tokens).isEmpty();
     }
 
@@ -131,7 +131,7 @@ class InputParserTest {
 
         // then
         assertThat(result.getNumberText()).isEqualTo("1|2|3");
-        String[] tokens = result.getDelimiters().split(result.getNumberText());
+        String[] tokens = result.splitNumbers();
         assertThat(tokens).containsExactly("1", "2", "3");
     }
 

@@ -11,11 +11,11 @@ public class ParseResult {
         this.numberText = numberText;
     }
 
-    public Delimiters getDelimiters() {
-        return delimiters;
+    public String[] splitNumbers() {
+        return delimiters.split(numberText);
     }
 
-    public String getNumberText() {
+    String getNumberText() {
         return numberText;
     }
 }

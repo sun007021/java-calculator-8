@@ -1,6 +1,7 @@
 package calculator.domain.delimiter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -16,9 +17,7 @@ public class Delimiters {
         this.delimiters.add(COMMA);
         this.delimiters.add(COLON);
 
-        for (Delimiter custom : customDelimiters) {
-            this.delimiters.add(custom);
-        }
+        Collections.addAll(this.delimiters, customDelimiters);
     }
 
     public String[] split(String text) {
