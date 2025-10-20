@@ -12,6 +12,9 @@ public class Delimiter {
         if (value == null || value.length() != 1) {
             throw new IllegalArgumentException("구분자는 1개의 문자여야 합니다.");
         }
+        if (Character.isDigit(value.charAt(0))) {
+            throw new IllegalArgumentException("구분자는 숫자가 될 수 없습니다.");
+        }
     }
 
     public String getValue() {
